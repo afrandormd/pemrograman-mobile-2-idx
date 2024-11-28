@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:myapp/app/modules/mahasiswa/controllers/mahasiswa_controller.dart';
 
-class MahasiswaAddView extends GetView<MahasiswaController> {
-  const MahasiswaAddView({Key? key}) : super(key: key);
+import '../controllers/dosen_controller.dart';
+
+class DosenAddView extends GetView<DosenController> {
+  const DosenAddView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Mahasiswa'),
+        title: const Text('Tambah dosen'),
         centerTitle: true,
       ),
       body: Padding(
@@ -17,10 +18,10 @@ class MahasiswaAddView extends GetView<MahasiswaController> {
         child: Column(
           children: [
             TextField(
-              controller: controller.cNpm,
+              controller: controller.cNidn,
               autocorrect: false,
               textInputAction: TextInputAction.next,
-              decoration: InputDecoration(labelText: "NPM"),
+              decoration: InputDecoration(labelText: "NIDN"),
             ),
             SizedBox(
               height: 10,
@@ -34,18 +35,27 @@ class MahasiswaAddView extends GetView<MahasiswaController> {
               height: 10,
             ),
             TextField(
-              controller: controller.cAlamat,
+              controller: controller.cProdi,
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(labelText: "Alamat"),
+              decoration: InputDecoration(labelText: "Prodi"),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: controller.cFakultas,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(labelText: "Fakultas"),
             ),
             SizedBox(
               height: 30,
             ),
             ElevatedButton(
               onPressed: () => controller.add(
-                controller.cNpm.text,
+                controller.cNidn.text,
                 controller.cNama.text,
-                controller.cAlamat.text,
+                controller.cProdi.text,
+                controller.cFakultas.text,
               ),
               child: Text("Simpan"),
             )
