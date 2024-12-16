@@ -1,17 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:myapp/app/modules/pegawai/controllers/pegawai_controller.dart';
 
-import '../controllers/dosen_controller.dart';
-
-class DosenUpdateView extends GetView<DosenController> {
-  const DosenUpdateView({Key? key}) : super(key: key);
+class PegawaiUpdateView extends GetView<PegawaiController> {
+  const PegawaiUpdateView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ubah dosen'),
+        title: const Text('Ubah Pegawai'),
         centerTitle: true,
       ),
       body: FutureBuilder<DocumentSnapshot<Object?>>(
@@ -19,54 +17,51 @@ class DosenUpdateView extends GetView<DosenController> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             var data = snapshot.data!.data() as Map<String, dynamic>;
-            controller.cNidn.text = data['nidn'];
             controller.cNama.text = data['nama'];
-            controller.cProdi.text = data['prodi'];
-            controller.cFakultas.text = data['fakultas'];
-
+            controller.cJabatan.text = data['jabatan'];
             return Padding(
               padding: EdgeInsets.all(8),
               child: Column(
                 children: [
                   TextField(
-                    controller: controller.cNidn,
+                    controller: controller.cNama,
                     autocorrect: false,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(labelText: "Nidn"),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: controller.cNama,
-                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(labelText: "Nama"),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    controller: controller.cProdi,
+                    controller: controller.cIdPegawai,
                     textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: "Prodi"),
+                    decoration: InputDecoration(labelText: "ID Pegawai"),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   TextField(
-                    controller: controller.cFakultas,
+                    controller: controller.cJabatan,
                     textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: "Fakultas"),
+                    decoration: InputDecoration(labelText: "Jabatan"),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextField(
+                    controller: controller.cAlamat,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(labelText: "Alamat"),
                   ),
                   SizedBox(
                     height: 30,
                   ),
                   ElevatedButton(
                     onPressed: () => controller.Update(
-                      controller.cNidn.text,
                       controller.cNama.text,
-                      controller.cProdi.text,
-                      controller.cFakultas.text,
+                      controller.cJabatan.text,
+                      controller.cIdPegawai.text,
+                      controller.cAlamat.text,
                       Get.arguments,
                     ),
                     child: Text("Ubah"),

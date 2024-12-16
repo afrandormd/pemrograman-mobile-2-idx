@@ -1,9 +1,8 @@
+import 'package:myapp/app/modules/mahasiswa/controllers/mahasiswa_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
-import '../controllers/mahasiswa_controller.dart';
 
 class MahasiswaUpdateView extends GetView<MahasiswaController> {
   const MahasiswaUpdateView({Key? key}) : super(key: key);
@@ -22,7 +21,6 @@ class MahasiswaUpdateView extends GetView<MahasiswaController> {
             controller.cNpm.text = data['npm'];
             controller.cNama.text = data['nama'];
             controller.cAlamat.text = data['alamat'];
-
             return Padding(
               padding: EdgeInsets.all(8),
               child: Column(

@@ -83,7 +83,7 @@ class LoginView extends GetView<LoginController> {
             ),
             ElevatedButton(
               onPressed: () {
-                cAuth.login(controller.cEmail.text, controller.cPass.text);
+                cAuth.LoginGoogle();
               },
               child: Text("Login with google"),
               style: ElevatedButton.styleFrom(

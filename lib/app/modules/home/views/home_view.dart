@@ -6,6 +6,8 @@ import 'package:myapp/app/modules/dosen/views/dosen_add_view.dart';
 import 'package:myapp/app/modules/dosen/views/dosen_view.dart';
 import 'package:myapp/app/modules/mahasiswa/views/mahasiswa_add_view.dart';
 import 'package:myapp/app/modules/mahasiswa/views/mahasiswa_view.dart';
+import 'package:myapp/app/modules/pegawai/views/pegawai_add_view.dart';
+import 'package:myapp/app/modules/pegawai/views/pegawai_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -29,24 +31,20 @@ class _DashboardAdminState extends State<DashboardAdmin> {
   int _index = 0;
   List<Map> _fragment = [
     {
-    'title': 'Dashboard', 
-    'view': MahasiswaView(),
-    'add': () => MahasiswaAddView()
+      'title': 'Dashboard',
+      'view': MahasiswaView(),
+      'add': () => MahasiswaAddView()
     },
     {
-    'title': 'Data Mahasiswa',
-    'view': MahasiswaView(),
-    'add': () => MahasiswaAddView()
+      'title': 'Data Mahasiswa',
+      'view': MahasiswaView(),
+      'add': () => MahasiswaAddView()
     },
+    {'title': 'Data Dosen', 'view': DosenView(), 'add': () => DosenAddView()},
     {
-    'title': 'Data Dosen',
-    'view': DosenView(),
-    'add': () => DosenAddView()
-    },
-    {
-    'title': 'Data Pegawai',
-    'view': MahasiswaView(),
-    'add': () => MahasiswaAddView()
+      'title': 'Data Pegawai',
+      'view': PegawaiView(),
+      'add': () => PegawaiAddView()
     },
   ];
 

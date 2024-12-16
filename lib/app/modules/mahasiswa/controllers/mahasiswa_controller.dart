@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MahasiswaController extends GetxController {
-  //TODO: Implement MahasiswaController
   late TextEditingController cNpm;
   late TextEditingController cNama;
   late TextEditingController cAlamat;
@@ -12,15 +12,16 @@ class MahasiswaController extends GetxController {
 
   Future<QuerySnapshot<Object?>> GetData() async {
     CollectionReference mahasiswa = firestore.collection('mahasiswa');
+
     return mahasiswa.get();
   }
 
   Stream<QuerySnapshot<Object?>> StreamData() {
     CollectionReference mahasiswa = firestore.collection('mahasiswa');
+
     return mahasiswa.snapshots();
   }
 
-// Bagian Tambah Data
   void add(String npm, String nama, String alamat) async {
     CollectionReference mahasiswa = firestore.collection("mahasiswa");
 
@@ -36,7 +37,6 @@ class MahasiswaController extends GetxController {
           onConfirm: () {
             cNpm.clear();
             cNama.clear();
-            cAlamat.clear();
             Get.back();
             Get.back();
             textConfirm:
@@ -51,7 +51,6 @@ class MahasiswaController extends GetxController {
     }
   }
 
-// Bagian Update Data
   Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
     DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
 
@@ -77,6 +76,7 @@ class MahasiswaController extends GetxController {
           cAlamat.clear();
           Get.back();
           Get.back();
+          Get.back();
         },
         textConfirm: "OK",
       );
@@ -89,7 +89,6 @@ class MahasiswaController extends GetxController {
     }
   }
 
-// Bagian Delete data
   void delete(String id) {
     DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
 
@@ -119,7 +118,6 @@ class MahasiswaController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     cNpm = TextEditingController();
     cNama = TextEditingController();
     cAlamat = TextEditingController();
@@ -128,7 +126,6 @@ class MahasiswaController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     cNpm.dispose();
     cNama.dispose();
     cAlamat.dispose();
