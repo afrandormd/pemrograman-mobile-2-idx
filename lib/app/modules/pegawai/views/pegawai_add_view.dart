@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:myapp/app/modules/pegawai/controllers/pegawai_controller.dart';
+
+import '../controllers/pegawai_controller.dart';
 
 class PegawaiAddView extends GetView<PegawaiController> {
   const PegawaiAddView({Key? key}) : super(key: key);
@@ -16,19 +18,18 @@ class PegawaiAddView extends GetView<PegawaiController> {
         child: Column(
           children: [
             TextField(
-              controller: controller.cNama,
+              controller: controller.cIdPegawai,
               autocorrect: false,
               textInputAction: TextInputAction.next,
-              decoration: InputDecoration(labelText: "Nama"),
+              decoration: InputDecoration(labelText: "ID Pegawai"),
             ),
             SizedBox(
               height: 10,
             ),
             TextField(
-              controller: controller.cIdPegawai,
-              autocorrect: false,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(labelText: "Id Pegawai"),
+              controller: controller.cNama,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(labelText: "Nama"),
             ),
             SizedBox(
               height: 10,
@@ -39,7 +40,7 @@ class PegawaiAddView extends GetView<PegawaiController> {
               decoration: InputDecoration(labelText: "Jabatan"),
             ),
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             TextField(
               controller: controller.cAlamat,
@@ -51,10 +52,11 @@ class PegawaiAddView extends GetView<PegawaiController> {
             ),
             ElevatedButton(
               onPressed: () => controller.add(
-                  controller.cNama.text,
-                  controller.cJabatan.text,
-                  controller.cIdPegawai.text,
-                  controller.cAlamat.text),
+                controller.cIdPegawai.text,
+                controller.cNama.text,
+                controller.cJabatan.text,
+                controller.cAlamat.text,
+              ),
               child: Text("Simpan"),
             )
           ],

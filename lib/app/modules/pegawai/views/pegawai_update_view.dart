@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:myapp/app/modules/pegawai/controllers/pegawai_controller.dart';
 
@@ -17,28 +18,32 @@ class PegawaiUpdateView extends GetView<PegawaiController> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             var data = snapshot.data!.data() as Map<String, dynamic>;
+            // controller.cIdPegawai.text = data['id_pegawai'];
+            controller.cIdPegawai.text = data['id_pegawai'] ?? '';
             controller.cNama.text = data['nama'];
             controller.cJabatan.text = data['jabatan'];
+            controller.cAlamat.text = data['alamat'];
+
             return Padding(
               padding: EdgeInsets.all(8),
               child: Column(
                 children: [
                   TextField(
-                    controller: controller.cNama,
+                    controller: controller.cIdPegawai,
                     autocorrect: false,
                     textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(labelText: "Nama"),
+                    decoration: InputDecoration(labelText: "Id Pegawai"),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    controller: controller.cIdPegawai,
+                    controller: controller.cNama,
                     textInputAction: TextInputAction.done,
-                    decoration: InputDecoration(labelText: "ID Pegawai"),
+                    decoration: InputDecoration(labelText: "Nama"),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   TextField(
                     controller: controller.cJabatan,
@@ -46,7 +51,7 @@ class PegawaiUpdateView extends GetView<PegawaiController> {
                     decoration: InputDecoration(labelText: "Jabatan"),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   TextField(
                     controller: controller.cAlamat,
@@ -58,9 +63,9 @@ class PegawaiUpdateView extends GetView<PegawaiController> {
                   ),
                   ElevatedButton(
                     onPressed: () => controller.Update(
+                      controller.cIdPegawai.text,
                       controller.cNama.text,
                       controller.cJabatan.text,
-                      controller.cIdPegawai.text,
                       controller.cAlamat.text,
                       Get.arguments,
                     ),

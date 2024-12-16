@@ -1,45 +1,44 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PegawaiController extends GetxController {
-  late TextEditingController cJabatan;
-  late TextEditingController cNama;
+  //TODO: Implement pegawaiController
   late TextEditingController cIdPegawai;
+  late TextEditingController cNama;
+  late TextEditingController cJabatan;
   late TextEditingController cAlamat;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<QuerySnapshot<Object?>> GetData() async {
     CollectionReference pegawai = firestore.collection('pegawai');
-
     return pegawai.get();
   }
 
   Stream<QuerySnapshot<Object?>> StreamData() {
     CollectionReference pegawai = firestore.collection('pegawai');
-
     return pegawai.snapshots();
   }
 
-  void add(String nama, String jabatan, String idPegawai, String alamat) async {
+// Bagian Tambah Data
+  void add(String id_pegawai, String nama, String jabatan, String alamat) async {
     CollectionReference pegawai = firestore.collection("pegawai");
 
     try {
       await pegawai.add({
+        "id_pegawai": id_pegawai,
         "nama": nama,
         "jabatan": jabatan,
-        "idPegawai": idPegawai,
-        "alamat": alamat
+        "alamat": alamat,
       });
       Get.defaultDialog(
           title: "Berhasil",
-          middleText: "Berhasil menyimpan data pegawai.",
+          middleText: "Berhasil menyimpan data pegawai",
           onConfirm: () {
+            cIdPegawai.clear();
             cNama.clear();
             cJabatan.clear();
-            cIdPegawai.clear();
             cAlamat.clear();
             Get.back();
             Get.back();
@@ -50,36 +49,37 @@ class PegawaiController extends GetxController {
       print(e);
       Get.defaultDialog(
         title: "Terjadi Kesalahan",
-        middleText: "Gagal Menambahkan Pegawai.",
+        middleText: "Gagal Menambahkan pegawai.",
       );
     }
   }
 
+// Bagian Update Data
   Future<DocumentSnapshot<Object?>> GetDataById(String id) async {
     DocumentReference docRef = firestore.collection("pegawai").doc(id);
 
     return docRef.get();
   }
 
-  void Update(String nama, String jabatan, String id, String idPegawai,
-      String alamat) async {
+  void Update(String id_pegawai, String nama, String jabatan, String alamat,
+      String id) async {
     DocumentReference pegawaiById = firestore.collection("pegawai").doc(id);
 
     try {
       await pegawaiById.update({
+        "id_pegawai": id_pegawai,
         "nama": nama,
         "jabatan": jabatan,
-        "idPegawai": idPegawai,
         "alamat": alamat,
       });
 
       Get.defaultDialog(
         title: "Berhasil",
-        middleText: "Berhasil mengubah data Pegawai.",
+        middleText: "Berhasil mengubah data pegawai.",
         onConfirm: () {
+          cIdPegawai.clear();
           cNama.clear();
           cJabatan.clear();
-          cIdPegawai.clear();
           cAlamat.clear();
           Get.back();
           Get.back();
@@ -90,11 +90,12 @@ class PegawaiController extends GetxController {
       print(e);
       Get.defaultDialog(
         title: "Terjadi Kesalahan",
-        middleText: "Gagal Menambahkan Pegawai.",
+        middleText: "Gagal Menambahkan pegawai.",
       );
     }
   }
 
+// Bagian Delete data
   void delete(String id) {
     DocumentReference docRef = firestore.collection("pegawai").doc(id);
 
@@ -124,18 +125,20 @@ class PegawaiController extends GetxController {
 
   @override
   void onInit() {
+    // TODO: implement onInit
+    cIdPegawai = TextEditingController();
     cNama = TextEditingController();
     cJabatan = TextEditingController();
-    cIdPegawai = TextEditingController();
     cAlamat = TextEditingController();
     super.onInit();
   }
 
   @override
   void onClose() {
+    // TODO: implement onClose
+    cIdPegawai.dispose();
     cNama.dispose();
     cJabatan.dispose();
-    cIdPegawai.dispose();
     cAlamat.dispose();
     super.onClose();
   }
