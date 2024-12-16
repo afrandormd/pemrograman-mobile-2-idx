@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myapp/app/modules/mahasiswa/views/mahasiswa_update_view.dart';
-import '../controllers/mahasiswa_controller.dart';
+import 'package:myapp/app/modules/pegawai/controllers/pegawai_controller.dart';
+import 'package:myapp/app/modules/pegawai/views/pegawai_update_view.dart';
 
-class MahasiswaView extends GetView<MahasiswaController> {
+class PegawaiView extends GetView<PegawaiController> {
   void showOption(id) async {
     var result = await Get.dialog(
       SimpleDialog(
@@ -13,7 +13,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
             onTap: () {
               Get.back();
               Get.to(
-                MahasiswaUpdateView(),
+                PegawaiUpdateView(),
                 arguments: id,
               );
             },
@@ -39,7 +39,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Object?>>(
-        stream: Get.put(MahasiswaController()).StreamData(),
+        stream: Get.put(PegawaiController()).StreamData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             // mengambil data
@@ -55,7 +55,7 @@ class MahasiswaView extends GetView<MahasiswaController> {
                       title: Text(
                           "${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}"),
                       subtitle: Text(
-                          "${(listAllDocs[index].data() as Map<String, dynamic>)["npm"]}"),
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["jabatan"]}"),
                       trailing: IconButton(
                         onPressed: () => showOption(listAllDocs[index].id),
                         icon: Icon(Icons.more_vert),

@@ -41,7 +41,7 @@ class DosenView extends GetView<DosenController> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Object?>>(
-      stream: Get.put(DosenController()).StreamData(),
+      stream: Get.put(DosenController()).streamData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           // mengambil data
