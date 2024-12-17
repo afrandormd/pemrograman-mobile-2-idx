@@ -55,9 +55,9 @@ class PegawaiView extends GetView<PegawaiController> {
                       backgroundColor: Color.fromARGB(255, 248, 248, 248),
                     ),
                     title: Text(
-                        "${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}"),
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)["nama_karyawan"]}"),
                     subtitle: Text(
-                        "${(listAllDocs[index].data() as Map<String, dynamic>)["jabatan"]}"),
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)["jabatan_karyawan"]}"),
                     trailing: IconButton(
                         onPressed: () => showOption(listAllDocs[index].id),
                         icon: Icon(Icons.more_vert)),

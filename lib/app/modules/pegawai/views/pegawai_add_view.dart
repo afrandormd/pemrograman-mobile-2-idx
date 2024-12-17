@@ -10,7 +10,7 @@ class PegawaiAddView extends GetView<PegawaiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Pegawai'),
+        title: const Text('Tambah Karyawan'),
         centerTitle: true,
       ),
       body: Padding(
@@ -18,44 +18,35 @@ class PegawaiAddView extends GetView<PegawaiController> {
         child: Column(
           children: [
             TextField(
-              controller: controller.cIdPegawai,
+              controller: controller.cNoKaryawan,
               autocorrect: false,
               textInputAction: TextInputAction.next,
-              decoration: InputDecoration(labelText: "ID Pegawai"),
+              decoration: InputDecoration(labelText: "No Karyawan"),
             ),
             SizedBox(
               height: 10,
             ),
             TextField(
-              controller: controller.cNama,
+              controller: controller.cNamaKaryawan,
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(labelText: "Nama"),
+              decoration: InputDecoration(labelText: "Nama Karyawan"),
             ),
             SizedBox(
               height: 10,
             ),
             TextField(
-              controller: controller.cJabatan,
+              controller: controller.cJabatanKaryawan,
               textInputAction: TextInputAction.done,
-              decoration: InputDecoration(labelText: "Jabatan"),
+              decoration: InputDecoration(labelText: "Jabatan Karyawan"),
             ),
             SizedBox(
               height: 10,
-            ),
-            TextField(
-              controller: controller.cAlamat,
-              textInputAction: TextInputAction.done,
-              decoration: InputDecoration(labelText: "Alamat"),
-            ),
-            SizedBox(
-              height: 30,
             ),
             ElevatedButton(
               onPressed: () => controller.add(
-                controller.cIdPegawai.text,
-                controller.cNama.text,
-                controller.cJabatan.text,
-                controller.cAlamat.text,
+                controller.cNoKaryawan.text,
+                controller.cNamaKaryawan.text,
+                controller.cJabatanKaryawan.text,
               ),
               child: Text("Simpan"),
             )

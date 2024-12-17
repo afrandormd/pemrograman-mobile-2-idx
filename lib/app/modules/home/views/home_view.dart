@@ -41,8 +41,13 @@ class _DashboardAdminState extends State<DashboardAdmin> {
       'add': () => MahasiswaAddView()
     },
     {'title': 'Data Dosen', 'view': DosenView(), 'add': () => DosenAddView()},
+    // {
+    //   'title': 'Data Pegawai',
+    //   'view': PegawaiView(),
+    //   'add': () => PegawaiAddView()
+    // },
     {
-      'title': 'Data Pegawai',
+      'title': 'Data Karyawan',
       'view': PegawaiView(),
       'add': () => PegawaiAddView()
     },
@@ -143,7 +148,7 @@ class _DashboardAdminState extends State<DashboardAdmin> {
               Get.back();
             },
             leading: Icon(Icons.people),
-            title: Text('Data Pegawai'),
+            title: Text('Karyawan 22312105'),
             trailing: Icon(Icons.navigate_next),
             iconColor: Colors.blue,
             textColor: Colors.blue,
