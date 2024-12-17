@@ -27,10 +27,10 @@ class PegawaiController extends GetxController {
 
 // Bagian Tambah Data
   void add(String noKaryawan, String namaKaryawan, String jabatanKaryawan) async {
-    CollectionReference pegawai = firestore.collection("karyawan_22312105");
+    CollectionReference karyawan = firestore.collection("karyawan_22312105");
 
     try {
-      await pegawai.add({
+      await karyawan.add({
         "no_karyawan": noKaryawan,
         "nama_karyawan": namaKaryawan,
         "jabatan_karyawan": jabatanKaryawan,
